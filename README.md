@@ -1,6 +1,7 @@
 # action-runner-aws
 Dockerfile
 
+### runner deploy example:
 ```dockerfile
 # dindrunnerdeployment.yaml
 apiVersion: actions.summerwind.dev/v1alpha1
