@@ -11,7 +11,7 @@ spec:
   replicas: 2
   template:
     spec:
-      image: docker pull ghcr.io/lwnmengjing/action-runner-aws:main
+      image: ghcr.io/lwnmengjing/action-runner-aws:main
       dockerdWithinRunnerContainer: true
       repository: mumoshu/actions-runner-controller-ci
       env: []
