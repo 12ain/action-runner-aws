@@ -24,6 +24,7 @@ LABEL maintainer "lwnmengjing  <991154416@qq.com>"
 COPY --from=builder ./aws ./aws
 RUN sudo ./aws/install
 RUN sudo rm -rf ./aws
+RUN sudo systemctl enable docker
 COPY --from=builder /usr/bin/kubectl /usr/local/bin/
 COPY --from=builder /usr/local/bin/aws-iam-authenticator /usr/local/bin/
 RUN /usr/local/bin/kubectl -h
