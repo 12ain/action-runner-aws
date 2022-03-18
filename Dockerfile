@@ -15,7 +15,9 @@ RUN curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/
 
 
 FROM summerwind/actions-runner:latest
-LABEL maintainer "lwnmengjing  <991154416@qq.com>"
+LABEL maintainer "lwnmengjing  <lwnmengjing@qq.com>"
+
+RUN sudo apt update -y && sudo apt-get install -y gettext
 
 COPY --from=builder /usr/bin/kubectl /usr/local/bin/
 COPY --from=builder /usr/local/bin/aws-iam-authenticator /usr/local/bin/
