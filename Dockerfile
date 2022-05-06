@@ -14,7 +14,7 @@ RUN curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/
     chmod +x ./aws-iam-authenticator && mv ./aws-iam-authenticator /usr/local/bin/
 
 
-FROM summerwind/actions-runner:latest
+FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:v2.291.1-ubuntu-20.04-800d6bd
 LABEL maintainer "lwnmengjing  <lwnmengjing@qq.com>"
 
 RUN sudo apt update -y && sudo apt-get install -y gettext
