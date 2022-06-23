@@ -18,7 +18,7 @@ RUN curl -L https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz | tar -xz && \
     mv linux-amd64/helm /usr/local/bin/ && \
     rm -rf linux-amd64
 
-FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:v2.291.1-ubuntu-20.04-800d6bd
+FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:latest
 LABEL maintainer "lwnmengjing  <lwnmengjing@qq.com>"
 
 RUN sudo apt update -y && sudo apt-get install -y gettext
