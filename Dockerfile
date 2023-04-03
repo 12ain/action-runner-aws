@@ -18,14 +18,26 @@ RUN curl -L https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz | tar -xz && \
     mv linux-amd64/helm /usr/local/bin/ && \
     rm -rf linux-amd64
 
+# Install Argocd cli
+RUN curl -L https://cd.apps.matrixlabs.org/download/argocd-linux-amd64  > /usr/bin/argocd && \
+    chmod +x /usr/bin/argocd
+
 FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:latest
 LABEL maintainer "lwnmengjing  <lwnmengjing@qq.com>"
 
-RUN sudo apt update -y && sudo apt-get install -y gettext
+RUN sudo apt update -y && sudo apt-get install -y gettext && \
+    sudo apt-get install apt-transport-https ca-certificates gnupg
 
 COPY --from=builder /usr/local/bin/helm /usr/local/bin/
 COPY --from=builder /usr/bin/kubectl /usr/local/bin/
 COPY --from=builder /usr/local/bin/aws-iam-authenticator /usr/local/bin/
+COPY --from=builder /usr/bin/argocd /usr/local/bin/
+# install gcloud cli
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | \ 
+    sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+RUN sudo apt-get update && sudo apt-get install google-cloud-cli
+
 RUN /usr/local/bin/kubectl -h
 RUN pip install awscli aws-sam-cli
 RUN /usr/local/bin/aws-iam-authenticator -h
