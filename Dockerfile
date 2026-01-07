@@ -1,9 +1,11 @@
 FROM debian:buster as builder
 
 # Install required system packages and dependencies
-ADD ./install_packages /install_packages
-RUN chmod +x /install_packages
-RUN ./install_packages ca-certificates curl procps sudo unzip curl
+#ADD ./install_packages /install_packages
+#RUN chmod +x /install_packages
+#RUN ./install_packages ca-certificates curl procps sudo unzip curl
+RUN sudo apt update
+RUN sudo apt install ca-certificates curl procps sudo unzip
 
 # "Install" kubectl
 RUN curl -L https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl > /usr/bin/kubectl && \
