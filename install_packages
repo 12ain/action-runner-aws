@@ -2,6 +2,7 @@
 set -e
 set -u
 export DEBIAN_FRONTEND=noninteractive
+echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
 n=0
 max=2
 until [ $n -gt $max ]; do
