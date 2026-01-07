@@ -29,7 +29,7 @@ RUN curl -L https://cd.apps.matrixlabs.org/download/argocd-linux-amd64  > /usr/b
 FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:latest
 LABEL maintainer "lwnmengjing  <lwnmengjing@qq.com>"
 
-RUN sudo apt update -y && sudo apt-get install -y gettext && \
+RUN sudo apt update -y && sudo apt-get install -y gettext wget && \
     sudo apt-get install -y apt-transport-https ca-certificates gnupg
 
 COPY --from=builder /usr/local/bin/helm /usr/local/bin/
