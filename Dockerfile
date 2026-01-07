@@ -43,8 +43,8 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --
 RUN sudo apt-get update && sudo apt-get install -y google-cloud-cli && sudo apt-get install -y vim
 
 RUN /usr/local/bin/kubectl -h
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3 python3-pip && \
-    rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && \
+    sudo apt-get install -y --no-install-recommends python3 python3-pip && \
+    sudo rm -rf /var/lib/apt/lists/*
 RUN pip install awscli aws-sam-cli
 RUN /usr/local/bin/aws-iam-authenticator -h
