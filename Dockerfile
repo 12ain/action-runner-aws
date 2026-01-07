@@ -46,5 +46,5 @@ RUN /usr/local/bin/kubectl -h
 RUN sudo apt-get update && \
     sudo apt-get install -y --no-install-recommends python3 python3-pip && \
     sudo rm -rf /var/lib/apt/lists/*
-RUN pip install awscli aws-sam-cli
+RUN python3 -m pip install --no-cache-dir awscli aws-sam-cli
 RUN /usr/local/bin/aws-iam-authenticator -h
