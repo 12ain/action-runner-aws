@@ -44,7 +44,10 @@ RUN sudo apt-get update && sudo apt-get install -y google-cloud-cli && sudo apt-
 
 RUN /usr/local/bin/kubectl -h
 RUN sudo apt-get update && \
-    sudo apt-get install -y --no-install-recommends python3 python3-pip && \
-    sudo rm -rf /var/lib/apt/lists/*
-RUN python3 -m pip install --no-cache-dir awscli aws-sam-cli
+    sudo apt-get install -y --no-install-recommends python3 python3-pip python3-venv && \
+    sudo rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y --no-install-recommends awscli && rm -rf /var/lib/apt/lists/*
+#RUN pip install awscli aws-sam-cli
+RUN python3 -m venv /opt/venv && /opt/venv/bin/pip install --no-cache-dir aws-sam-cli && \
+    ln -s /opt/venv/bin/sam /usr/local/bin/sam
 RUN /usr/local/bin/aws-iam-authenticator -h
