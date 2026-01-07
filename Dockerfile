@@ -45,5 +45,5 @@ RUN sudo apt-get update && sudo apt-get install -y google-cloud-cli && sudo apt-
 RUN /usr/local/bin/kubectl -h
 RUN sudo apt-get update && sudo apt-get install -y python3 python3-pip \
     && sudo rm -rf /var/lib/apt/lists/*
-RUN pip3 install awscli aws-sam-cli
+RUN pip3 install --break-system-packages awscli aws-sam-cli
 RUN /usr/local/bin/aws-iam-authenticator -h
