@@ -2,7 +2,8 @@ FROM debian:buster as builder
 
 # Install required system packages and dependencies
 ADD ./install_packages /install_packages
-RUN chmod +x /install_packages
+RUN chmod +x /install_packages && sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list
+                               && apt-get update -o Acquire::AllowInsecureRepositories=false || true
 RUN ./install_packages ca-certificates curl procps sudo unzip curl
 
 # "Install" kubectl
