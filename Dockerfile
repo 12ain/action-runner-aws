@@ -1,4 +1,4 @@
-FROM debian:buster as builder
+FROM ubuntu:25.10 as builder
 
 # Install required system packages and dependencies
 #ADD ./install_packages /install_packages
