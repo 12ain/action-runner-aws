@@ -4,8 +4,10 @@ FROM ubuntu:25.10 as builder
 #ADD ./install_packages /install_packages
 #RUN chmod +x /install_packages
 #RUN ./install_packages ca-certificates curl procps sudo unzip curl
-RUN sudo apt update
-RUN sudo apt install ca-certificates curl procps sudo unzip
+RUN export DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends ca-certificates curl procps sudo unzip
+RUN rm -rf /var/lib/apt/lists/*
 
 # "Install" kubectl
 RUN curl -L https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl > /usr/bin/kubectl && \
